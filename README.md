@@ -1,4 +1,4 @@
-<p align="center"><a href="https://danceit.club"><img src="https://danceit.club/logo-git.png" /></a></p>
+<p align="center"><a href="https://danceit.club"><img src="https://danceit.club/logo-git-black.png" /></a></p>
 
 ##### Website: [danceit.club][website-link]
 ##### Author: Yuri Cristian Cauna Robles
