@@ -1,6 +1,7 @@
 .idea/
 .sass-cache/
 /.web-server-pid
+/documentation
 /app/config/parameters.yml
 /build/
 /phpunit.xml
