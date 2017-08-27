@@ -1,0 +1,46 @@
+nav{
+    border-bottom: solid 0.2em #CC0606;
+}
+nav .brand-logo
+{
+    line-height: initial;
+    margin: 7px 0 0 1rem;
+}
+.middle-3-buttons
+{
+    position: relative;
+    margin-left: 50%;
+    left: -100px;
+}
+.parallax-container {
+    height: 600px;
+}
+.parallax-content
+{
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    right: 0;
+    bottom: 4rem;
+    font-family: 'Roboto Light';
+}
+.parallax-content h3
+{
+    font-family: 'Roboto Light';
+    text-transform: uppercase;
+}
+.parallax-content h5
+{
+    font-family: Roboto Regular;
+    font-size: 1.3em;
+}
+.section-welcom
+{
+    /*background-image: url('../img/section-welcom.jpg');*/
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.shadow-5
+{
+    background-color: rgba(0,0,0,0.5);
+}

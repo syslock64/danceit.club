@@ -6,13 +6,35 @@
     <title>Dance It! :: {% block title %}Welcom!{% endblock %}</title>
     <link href="{{ asset('lib/materialize/css') }}/icon.css" rel="stylesheet">
     <link href="{{ asset('lib/materialize/css') }}/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="{{ asset('css') }}/base.css" type="text/css" rel="stylesheet" media="screen,projection">
     {% block stylesheets %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
     {% block javascript %}{% endblock %}
 </head>
 <body>
     <header>
-
+        {% if app.user %}
+        <ul id="dropdown1" class="dropdown-content">
+            <li><a href="#!">Configuración</a></li>
+            <li><a href="#!">Mensajes</a></li>
+            <li class="divider"></li>
+            <li><a href="{{ path('fos_user_security_logout') }}">Cerrar sesión</a></li>
+        </ul>
+        {% endif %}
+        <nav class="grey darken-4">
+            <div class="nav-wrapper">
+                <a href="#!" class="brand-logo"><img src="{{ asset('logo.svg') }}" height="50"/></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="">Tienda</a></li>
+                    <li><a href="">Contáctanos</a></li>
+                    {% if app.user %}
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Mi cuenta<i class="material-icons right">arrow_drop_down</i></a></li>
+                    {% else %}
+                    <li><a href="{{ path('fos_user_security_login') }}">Iniciar sesión</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
     </header>
     <main>
     {% block body %}{% endblock %}
@@ -22,5 +44,6 @@
     </footer>
     <script src="{{ asset('lib/jquery') }}/jquery-2.1.1.min.js"></script>
     <script src="{{ asset('lib/materialize/js') }}/materialize.min.js" type="text/javascript"></script>
+    {% block javascripts %}{% endblock %}
 </body>
 </html>
