@@ -1,0 +1,11 @@
+CpanelBundle\Entity\User:
+    type: entity
+    table: users
+    repositoryClass: CpanelBundle\Repository\UserRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    lifecycleCallbacks: {  }
