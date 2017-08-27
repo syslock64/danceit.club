@@ -40,6 +40,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
             $nUser->setRoles($user['roles']);
             $nUser->setSalt(md5(uniqid()));
             $nUser->setPassword($enc->encodePassword($nUser,$pass));
+            $nUser->setEnabled(true);
 
             $manager->persist($nUser);
         }
