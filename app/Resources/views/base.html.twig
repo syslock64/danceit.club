@@ -29,14 +29,85 @@
                     <li><a href="">Contáctanos</a></li>
                     {% if app.user %}
                     <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Mi cuenta<i class="material-icons right">arrow_drop_down</i></a></li>
-                    {% else %}
-                    <li><a href="{{ path('fos_user_security_login') }}">Iniciar sesión</a></li>
                     {% endif %}
                 </ul>
             </div>
         </nav>
     </header>
     <main>
+    {% if not app.user %}
+        <div class="section grey darken-4 section-welcom">
+            <div class="row">
+                <div class="col s12 m6 xl4 offset-xl2 white-text">
+                    <h2 class="red-text"><b>Bienvenido</b></h2>
+                    <h5>al servicio de ubicación de entretenimiento!</h5>
+                    <p>Encontraras el más grande repositorio de bailes hecho coreografía y un sin fin de profesionales y/o amantes del baile con los cuales podras amistar.</p>
+                    <p>Aprende a bailar gratis con tu comunidad. Además podrás contactar con el coreografo acuerdas un pago y la enseñanza sera asistida fisica y/o virtual.</p>
+                </div>
+                <div class="col s12 m6 xl4">
+                    <div class="row card-panel">
+                        <div class="col s12">
+                            <h5 class="center-align">Accede a todos los beneficios que te brinda <span class="red-text upper-text">DanceIt</span>.</h5>
+                            <ul class="tabs">
+                                <li class="tab col s6"><a class="active" href="#test1">Ingresar</a></li>
+                                <li class="tab col s6"><a href="#test2">Registrar</a></li>
+                            </ul>
+                        </div>
+                        <div id="test1" class="col s12">
+                            <form action="{{ path('fos_user_security_check') }}" method="post">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="username" name="_username" type="text" class="validate">
+                                        <label for="username">Usuario o Correo</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <input id="password" name="_password" type="password" class="validate">
+                                        <label for="password">Clave</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col s12 right-align">
+                                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                                        <button class="btn" type="submit"><i class="material-icons right">send</i>Acceder</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="test2" class="col s12">
+                            {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        {{ form_widget(form.email,{'attr':{'class':'validate'}}) }}
+                                        {{ form_label(form.email,null,{'label':'Correo','label_attr':{'data-error':'Ingresa un correo electronico válido','data-success':'right'}}) }}
+                                    </div>
+                                    <div class="input-field col s12">
+                                        {{ form_widget(form.username,{'attr':{'class':'validate','pattern':'.{6,}','maxlength':'30'}}) }}
+                                        {{ form_label(form.username,null,{'label':'Usuario','label_attr':{'data-error':'De 6 a 30 caracteres','data-success':'right'}}) }}
+                                    </div>
+                                    <div class="input-field col s12">
+                                        {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'validate','pattern':'.{6,}','maxlength':'30'}}) }}
+                                        {{ form_label(form.plainPassword.first, null, {'label':'Clave','label_attr':{'data-error':'De 6 a 30 caracteres','data-success':'right'}}) }}
+                                    </div>
+                                    <div class="input-field col s12">
+                                        {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'validate','pattern':'.{6,}','maxlength':'30'}}) }}
+                                        {{ form_label(form.plainPassword.second, null, {'label':'Confirmar clave','label_attr':{'data-error':'De 6 a 30 caracteres','data-success':'right'}}) }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col s12 right-align">
+                                        {{ form_row(form._token) }}
+                                        <button class="btn" type="submit"><i class="material-icons right">send</i>Registrar</button>
+                                    </div>
+                                </div>
+                            {{ form_end(form,{'render_rest':false}) }}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    {% endif %}
     {% block body %}{% endblock %}
     </main>
     <footer>
