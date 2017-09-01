@@ -37,7 +37,7 @@ class StoreController extends Controller
                     "amount" => $mount,
                     "capture" => true,
                     "currency_code" => "PEN",
-                    "email" => $email,
+                    //"email" => $email,
                     "description" => "Venta de prueba",
                     "installments" => 0,
                     "metadata" => array("test"=>"test"),
