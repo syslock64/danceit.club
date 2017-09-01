@@ -9,10 +9,7 @@
 
 
     <!-- Configura el formulario-->
-    <script>
-        Culqi.publicKey = 'pk_test_IG34FVVcGX2U7U9m';
-        Culqi.init();
-    </script>
+
     {#<script>#}
         {#Culqi.publicKey = 'pk_test_IG34FVVcGX2U7U9m';#}
         {#Culqi.init();#}
@@ -36,7 +33,10 @@
     {#</script>#}
 {% endblock %}
 {% block body %}
-
+    <script>
+        Culqi.publicKey = 'pk_test_IG34FVVcGX2U7U9m';
+        Culqi.init();
+    </script>
     //Aquí creamos el formulario de captura de la tarjeta
     <form action="" method="POST" id="culqi-card-form">
         <div>
