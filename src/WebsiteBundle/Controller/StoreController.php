@@ -15,13 +15,10 @@ class StoreController extends Controller
         ]);
     }
 
-    public function chargeAction(Request $request)
+    public function chargeAction()
     {
-        $token = $request->request->get('_t',null);
-        $mount = $request->request->get('_m',null);
-        $email = $request->request->get('_e',null);
-        $response = ['success'=>!1,'messages'];
-return new JsonResponse($response,$token,$mount,$email);
+
+return new JsonResponse(['hola']);
 
 
     }
