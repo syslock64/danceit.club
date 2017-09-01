@@ -48,7 +48,7 @@ class StoreController extends Controller
         }
         catch(\Exception $e)
         {
-            var_dump(['hola']);die();
+            return new JsonResponse($e->getMessage());
         }
 
     }
