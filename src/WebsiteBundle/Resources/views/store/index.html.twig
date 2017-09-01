@@ -4,34 +4,6 @@
 <script src="https://checkout.culqi.com/v2"></script>
 <!-- Seteando valores de config-->
 {% endblock %}
-{% block javascripts %}
-
-
-
-    <!-- Configura el formulario-->
-
-    {#<script>#}
-        {#Culqi.publicKey = 'pk_test_IG34FVVcGX2U7U9m';#}
-        {#Culqi.init();#}
-        {#(function($){#}
-            {#$(function(){#}
-
-        {#// Recibimos el token desde los servidores de Culqi#}
-        {#function culqi() {#}
-            {#if (Culqi.token) { // Token creado exitosamente!#}
-                {#// Obtener el token ID#}
-                {#var token = Culqi.token.id;#}
-                {#alert('Se ha creado un token: '+token);#}
-            {#} else { // Hubo algun problema!#}
-                {#// Mostramos JSON de objeto error en consola#}
-                {#console.log(Culqi.error);#}
-                {#alert(Culqi.error.mensaje);#}
-            {#}#}
-        {#};#}
-            {#});#}
-        {#})(jQuery);#}
-    {#</script>#}
-{% endblock %}
 {% block body %}
     <script>
         Culqi.publicKey = 'pk_test_IG34FVVcGX2U7U9m';
@@ -65,10 +37,36 @@
             <span>/</span>
             <input type="text" size="4" data-culqi="card[exp_year]" id="card[exp_year]">
         </div>
+        <div>
+            <button class="btn-large">Pagar!</button>
+        </div>
     </form>
     //Aquí creamos el Token en Culqi con la información de la tarjeta
     <script>
-        Culqi.createToken();
+        function culqi() {
+
+            if(Culqi.token) { // ¡Token creado exitosamente!
+                // Get the token ID:
+                var token = Culqi.token.id;
+                alert('Se ha creado un token:' + token);
+
+            }else{ // ¡Hubo algún problema!
+                // Mostramos JSON de objeto error en consola
+                console.log(Culqi.error);
+                alert(Culqi.error.mensaje);
+            }
+        };
+
     </script>
 
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).on('ready',function(){
+            $('#culqi-card-form').on('submit',function(e){
+                e.preventDefault();
+                Culqi.createToken();
+            })
+        });
+    </script>
 {% endblock %}
