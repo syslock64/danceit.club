@@ -19,9 +19,10 @@ class StoreController extends Controller
     {
         $token = $request->request->get('_t',null);
         $mount = $request->request->get('_m',null);
+        $email = $request->request->get('_e',null);
         $response = ['success'=>!1];
 
-        if(empty($token) || empty($mount))
+        if(empty($token) || empty($mount) || empty($email))
         {
             $response['messages'][] = 'Vuelve a procesar tu compra, ocurrio un error mientras se enviaron los datos.';
             return new JsonResponse($response);
@@ -36,6 +37,7 @@ class StoreController extends Controller
                     "amount" => $mount,
                     "capture" => true,
                     "currency_code" => "PEN",
+                    "email" => $email,
                     "description" => "Venta de prueba",
                     "installments" => 0,
                     "metadata" => array("test"=>"test"),

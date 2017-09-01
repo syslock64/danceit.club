@@ -14,7 +14,7 @@
         <div>
             <label>
                 <span>Correo Electrónico</span>
-                <input type="text" size="50" data-culqi="card[email]" id="card[email]" value="syslock64@gmail.com">
+                <input type="text" size="50" data-culqi="card[email]" name="email" id="card[email]" value="syslock64@gmail.com">
             </label>
         </div>
         <div>
@@ -47,13 +47,15 @@
 
             if(Culqi.token) { // ¡Token creado exitosamente!
                 // Get the token ID:
-                var token = Culqi.token.id;
+                var token = Culqi.token.id,
+                    email = $('input[name="email"]').val();
                 $.ajax({
                     url:"{{ path('website_store_charge') }}",
                     method:'post',
                     dataType: 'json',
                     data: {
                         _t:token,
+                        _e: email,
                         _m:299
                     },
                     beforeSend: function()
