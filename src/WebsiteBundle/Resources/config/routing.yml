@@ -5,3 +5,8 @@ website_home_index:
 website_store_index:
     path:     /store
     defaults: { _controller: WebsiteBundle:Store:index }
+
+website_store_charge:
+    path:     /store-charge
+    defaults: { _controller: WebsiteBundle:Store:charge}
+    methods:   POST

@@ -10,32 +10,32 @@
         Culqi.init();
     </script>
     //Aquí creamos el formulario de captura de la tarjeta
-    <form action="" method="POST" id="culqi-card-form">
+    <form action="{{ path('website_store_charge') }}" method="POST" id="culqi-card-form">
         <div>
             <label>
                 <span>Correo Electrónico</span>
-                <input type="text" size="50" data-culqi="card[email]" id="card[email]">
+                <input type="text" size="50" data-culqi="card[email]" id="card[email]" value="syslock64@gmail.com">
             </label>
         </div>
         <div>
             <label>
                 <span>Número de tarjeta</span>
-                <input type="text" size="20" data-culqi="card[number]"  id="card[number]">
+                <input type="text" size="20" data-culqi="card[number]"  id="card[number]" value="4111111111111111">
             </label>
         </div>
         <div>
             <label>
                 <span>CVV</span>
-                <input type="text" size="4" data-culqi="card[cvv]" id="card[cvv]">
+                <input type="text" size="4" data-culqi="card[cvv]" id="card[cvv]" value="123">
             </label>
         </div>
         <div>
             <label>
                 <span>Fecha expiración (MM/YYYY)</span>
-                <input type="text" size="2" data-culqi="card[exp_month]" id="card[exp_month]">
+                <input type="text" size="2" data-culqi="card[exp_month]" id="card[exp_month]" value="09">
             </label>
             <span>/</span>
-            <input type="text" size="4" data-culqi="card[exp_year]" id="card[exp_year]">
+            <input type="text" size="4" data-culqi="card[exp_year]" id="card[exp_year]" value="2020">
         </div>
         <div>
             <button class="btn-large">Pagar!</button>
@@ -48,7 +48,27 @@
             if(Culqi.token) { // ¡Token creado exitosamente!
                 // Get the token ID:
                 var token = Culqi.token.id;
-                alert('Se ha creado un token:' + token);
+                $.ajax({
+                    url:"{{ path('website_store_charge') }}",
+                    method:'post',
+                    dataType: 'json',
+                    data: {
+                        _t:token,
+                        _m:299
+                    },
+                    beforeSend: function()
+                    {
+                        console.warn($('#culqi-card-form').serialize());
+                    },
+                    success: function(data)
+                    {
+                        console.log(data);
+                    },
+                    error: function(e)
+                    {
+                        console.error(e);
+                    }
+                });
 
             }else{ // ¡Hubo algún problema!
                 // Mostramos JSON de objeto error en consola
