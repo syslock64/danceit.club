@@ -15,11 +15,8 @@ class StoreController extends Controller
         ]);
     }
 
-    public function chargeAction()
+    public function chargeAction(Request $request)
     {
-
-return new JsonResponse(['hola']);
-
-
+        var_dump($request);die();
     }
 }
