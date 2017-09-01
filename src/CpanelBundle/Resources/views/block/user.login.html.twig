@@ -1,0 +1,18 @@
+<form action="{{ path('fos_user_security_check') }}" method="post">
+    <div class="row">
+        <div class="input-field col s12">
+            <input id="username" name="_username" type="text" class="validate">
+            <label for="username">Usuario o Correo</label>
+        </div>
+        <div class="input-field col s12">
+            <input id="password" name="_password" type="password" class="validate">
+            <label for="password">Clave</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 right-align">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <button class="btn" type="submit"><i class="material-icons right">send</i>Acceder</button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{% block javascripts %}
+    <script src="https://checkout.culqi.com/v2"></script>
+
+    <!-- Configura el formulario-->
+    <script>
+        (function($){
+            $(function(){
+                Culqi.publicKey = 'pk_test_IG34FVVcGX2U7U9m';
+                Culqi.settings({
+                    title: 'Culqi Store',
+                    currency: 'PEN',
+                    description: 'Polo Culqi lover',
+                    amount: 3500
+                });
+                $(document).on('click','#paySafe',function(e){
+                    e.preventDefault();
+                    Culqi.open();
+                })
+            });
+        })(jQuery);
+    </script>
+{% endblock %}
+{% block body %}
+    <button class="btn-large" id="paySafe">Pagar</button>
+{% endblock %}

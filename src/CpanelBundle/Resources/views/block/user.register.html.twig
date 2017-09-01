@@ -1,0 +1,26 @@
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+<div class="row">
+    <div class="input-field col s12">
+        {{ form_widget(form.email,{'attr':{'class':'validate'}}) }}
+        {{ form_label(form.email,null,{'label':'Correo','label_attr':{'data-error':'Ingresa un correo electronico válido','data-success':'right'}}) }}
+    </div>
+    <div class="input-field col s12">
+        {{ form_widget(form.username,{'attr':{'class':'validate','pattern':'.{6,}','maxlength':'30'}}) }}
+        {{ form_label(form.username,null,{'label':'Usuario','label_attr':{'data-error':'De 6 a 30 caracteres','data-success':'right'}}) }}
+    </div>
+    <div class="input-field col s12">
+        {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'validate','pattern':'.{6,}','maxlength':'30'}}) }}
+        {{ form_label(form.plainPassword.first, null, {'label':'Clave','label_attr':{'data-error':'De 6 a 30 caracteres','data-success':'right'}}) }}
+    </div>
+    <div class="input-field col s12">
+        {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'validate','pattern':'.{6,}','maxlength':'30'}}) }}
+        {{ form_label(form.plainPassword.second, null, {'label':'Confirmar clave','label_attr':{'data-error':'De 6 a 30 caracteres','data-success':'right'}}) }}
+    </div>
+</div>
+<div class="row">
+    <div class="col s12 right-align">
+        {{ form_row(form._token) }}
+        <button class="btn" type="submit"><i class="material-icons right">send</i>Registrar</button>
+    </div>
+</div>
+{{ form_end(form,{'render_rest':false}) }}

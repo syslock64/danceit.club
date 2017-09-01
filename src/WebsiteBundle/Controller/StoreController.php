@@ -4,14 +4,11 @@ namespace WebsiteBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-
-class HomeController extends Controller
+class StoreController extends Controller
 {
     public function indexAction()
     {
-
-        return $this->render('WebsiteBundle:home:index.html.twig',[
-            //'form' => $form->createView(),
+        return $this->render('WebsiteBundle:store:index.html.twig',[
         ]);
     }
 }
